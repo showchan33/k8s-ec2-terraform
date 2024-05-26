@@ -1,0 +1,79 @@
+var_provider = {
+  region     = "ap-northeast-1"
+  # Enter each key for IAM user authentication
+  access_key = "AKxxxxx....."
+  secret_key = "yyyyyzzzzz....."
+}
+
+vpc = {
+  name       = "vpc_k8s"
+  cidr_block = "10.0.0.0/26"
+}
+
+subnet = {
+  name                    = "subnet_k8s"
+  cidr_block              = "10.0.0.0/27"
+  availability_zone       = "ap-northeast-1a"
+  map_public_ip_on_launch = true
+}
+
+ec2_control_plane = {
+  ami_owners        = ["099720109477"]
+  ami_name_values   = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+  instance_type     = "t3a.small"
+  instance_name     = "kubernetes_setup_control_plane"
+  private_ip        = "10.0.0.4"
+  # Specify a public key file to SSH to the EC2 instance
+  ssh_pubkey        = "./files/sshkey.pub"
+  aws_key_pair_name = "ssh_key_control_plane"
+}
+
+ec2_workers = [
+  {
+    ami_owners        = ["099720109477"]
+    ami_name_values   = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+    instance_type     = "t3.micro"
+    instance_name     = "kubernetes_setup_worker1"
+    private_ip        = "10.0.0.5"
+    # Specify a public key file to SSH to the EC2 instance
+    ssh_pubkey        = "./files/sshkey.pub"
+    aws_key_pair_name = "ssh_key_worker1"
+  },
+  {
+    ami_owners        = ["099720109477"]
+    ami_name_values   = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+    instance_type     = "t3.micro"
+    instance_name     = "kubernetes_setup_worker2"
+    private_ip        = "10.0.0.6"
+    # Specify a public key file to SSH to the EC2 instance
+    ssh_pubkey        = "./files/sshkey.pub"
+    aws_key_pair_name = "ssh_key_worker2"
+  }
+]
+
+security_group = {
+  name_control_plane = "sg_k8s_control_plane"
+  name_worker        = "sg_k8s_worker"
+  port_ssh           = 22
+  port_apiserver     = 6443
+  port_kubelet       = 10250
+  # Write down the IP address to SSH to the EC2 instance
+  cidr_blocks_for_ssh = ["111.222.333.444/32"]
+}
+
+ingress_rules_k8s_additional = {
+  # Example of using Flannel for CNI
+  flannel = {
+    from_port = 8472
+    to_port   = 8472
+    protocol  = "udp"
+  }
+}
+
+internet_gateway = {
+  name = "internet_gateway_k8s"
+}
+
+route_table = {
+  name = "route_table_k8s"
+}
