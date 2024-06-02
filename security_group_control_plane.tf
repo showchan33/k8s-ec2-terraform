@@ -15,7 +15,14 @@ resource "aws_security_group" "control_plane" {
     from_port   = var.security_group.port_apiserver
     to_port     = var.security_group.port_apiserver
     protocol    = "tcp"
-    cidr_blocks = [var.subnet.cidr_block]
+    cidr_blocks = (
+      var.ec2_control_plane.enable_access_to_apiserver ?
+        concat(
+          [var.subnet.cidr_block],
+          var.security_group.cidr_blocks_for_ssh
+        ) :
+        [var.subnet.cidr_block]
+    )
   }
 
   # for kubelet

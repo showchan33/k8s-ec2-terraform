@@ -24,13 +24,14 @@ variable "subnet" {
 
 variable "ec2_control_plane" {
   default = {
-    ami_owners        = []
-    ami_name_values   = []
-    instance_type     = "t3a.small"
-    instance_name     = "kubernetes_setup_control_plane"
-    private_ip        = null
-    ssh_pubkey        = "./files/sshkey.pub"
-    aws_key_pair_name = "ssh_key_control_plane"
+    ami_owners                 = []
+    ami_name_values            = []
+    instance_type              = "t3a.small"
+    instance_name              = "kubernetes_setup_control_plane"
+    private_ip                 = null
+    ssh_pubkey                 = "./files/sshkey.pub"
+    aws_key_pair_name          = "ssh_key_control_plane"
+    enable_access_to_apiserver = false
   }
 }
 

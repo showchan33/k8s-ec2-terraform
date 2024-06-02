@@ -40,14 +40,14 @@ variable "private_ip" {
   default     = null
 }
 
-variable "aws_key_pair_name" {
-  description = "Name of the key pair to store the public key for SSH"
+variable "ssh_pubkey" {
+  description = "File path of the public key used to SSH to EC2"
   type        = string
   default     = ""
 }
 
-variable "ssh_pubkey" {
-  description = "File path of the public key used to SSH to EC2"
+variable "aws_key_pair_name" {
+  description = "Name of the key pair to store the public key for SSH"
   type        = string
   default     = ""
 }

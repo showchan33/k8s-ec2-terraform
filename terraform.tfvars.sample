@@ -18,14 +18,15 @@ subnet = {
 }
 
 ec2_control_plane = {
-  ami_owners        = ["099720109477"]
-  ami_name_values   = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
-  instance_type     = "t3a.small"
-  instance_name     = "kubernetes_setup_control_plane"
-  private_ip        = "10.0.0.4"
+  ami_owners                 = ["099720109477"]
+  ami_name_values            = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+  instance_type              = "t3a.small"
+  instance_name              = "kubernetes_setup_control_plane"
+  private_ip                 = "10.0.0.4"
   # Specify a public key file to SSH to the EC2 instance
-  ssh_pubkey        = "./files/sshkey.pub"
-  aws_key_pair_name = "ssh_key_control_plane"
+  ssh_pubkey                 = "./files/sshkey.pub"
+  aws_key_pair_name          = "ssh_key_control_plane"
+  enable_access_to_apiserver = false
 }
 
 ec2_workers = [
