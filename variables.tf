@@ -31,6 +31,7 @@ variable "ec2_control_plane" {
     private_ip                 = null
     ssh_pubkey                 = "./files/sshkey.pub"
     aws_key_pair_name          = "ssh_key_control_plane"
+    ebs_configs                = []
     enable_access_to_apiserver = false
   }
 }
@@ -45,6 +46,7 @@ variable "ec2_workers" {
       private_ip        = null
       ssh_pubkey        = "./files/sshkey.pub"
       aws_key_pair_name = "ssh_key_worker1"
+      ebs_configs       = []
     },
     {
       ami_owners        = []
@@ -54,6 +56,7 @@ variable "ec2_workers" {
       private_ip        = null
       ssh_pubkey        = "./files/sshkey.pub"
       aws_key_pair_name = "ssh_key_worker2"
+      ebs_configs       = []
     }
   ]
 }

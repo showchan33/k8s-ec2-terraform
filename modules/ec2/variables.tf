@@ -51,3 +51,15 @@ variable "aws_key_pair_name" {
   type        = string
   default     = ""
 }
+
+# variable "use_additional_ebs" {
+#   description = "Set to true to add EBS"
+#   type        = bool
+#   default     = false
+# }
+
+variable "ebs_configs" {
+  description = "Configurations for creating additional EBSs"
+  type        = list(any)
+  default     = []
+}

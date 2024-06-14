@@ -9,6 +9,7 @@ module "ec2_control_plane" {
   private_ip                 = var.ec2_control_plane.private_ip
   ssh_pubkey                 = var.ec2_control_plane.ssh_pubkey
   aws_key_pair_name          = var.ec2_control_plane.aws_key_pair_name
+  ebs_configs                = var.ec2_control_plane.ebs_configs
 }
 
 module "ec2_worker" {
@@ -23,4 +24,5 @@ module "ec2_worker" {
   private_ip                 = each.value.private_ip
   ssh_pubkey                 = each.value.ssh_pubkey
   aws_key_pair_name          = each.value.aws_key_pair_name
+  ebs_configs                = each.value.ebs_configs
 }
