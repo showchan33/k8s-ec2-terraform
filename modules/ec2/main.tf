@@ -20,6 +20,21 @@ resource "aws_instance" "default" {
   key_name               = aws_key_pair.ssh_key.id
   private_ip             = var.private_ip
 
+  dynamic "root_block_device" {
+    for_each = var.root_block_device_config != null ? [var.root_block_device_config] : []
+
+    content {
+      delete_on_termination = lookup(root_block_device.value, "delete_on_termination", null)
+      encrypted             = lookup(root_block_device.value, "encrypted", null)
+      iops                  = lookup(root_block_device.value, "iops", null)
+      kms_key_id            = lookup(root_block_device.value, "kms_key_id", null)
+      tags                  = contains(keys(root_block_device.value), "tags") ? root_block_device.value.tags : {}
+      throughput            = lookup(root_block_device.value, "throughput", null)
+      volume_size           = lookup(root_block_device.value, "volume_size", null)
+      volume_type           = lookup(root_block_device.value, "volume_type", null)
+    }
+  }
+
   tags = {
     Name = var.instance_name
   }

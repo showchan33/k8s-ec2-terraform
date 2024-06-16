@@ -31,6 +31,7 @@ variable "ec2_control_plane" {
     private_ip                 = null
     ssh_pubkey                 = "./files/sshkey.pub"
     aws_key_pair_name          = "ssh_key_control_plane"
+    root_block_device_config   = null
     ebs_configs                = []
     enable_access_to_apiserver = false
   }
@@ -39,24 +40,26 @@ variable "ec2_control_plane" {
 variable "ec2_workers" {
   default = [
     {
-      ami_owners        = []
-      ami_name_values   = []
-      instance_type     = "t3.micro"
-      instance_name     = "kubernetes_setup_worker1"
-      private_ip        = null
-      ssh_pubkey        = "./files/sshkey.pub"
-      aws_key_pair_name = "ssh_key_worker1"
-      ebs_configs       = []
+      ami_owners               = []
+      ami_name_values          = []
+      instance_type            = "t3.micro"
+      instance_name            = "kubernetes_setup_worker1"
+      private_ip               = null
+      ssh_pubkey               = "./files/sshkey.pub"
+      aws_key_pair_name        = "ssh_key_worker1"
+      root_block_device_config = null
+      ebs_configs              = []
     },
     {
-      ami_owners        = []
-      ami_name_values   = []
-      instance_type     = "t3.micro"
-      instance_name     = "kubernetes_setup_worker2"
-      private_ip        = null
-      ssh_pubkey        = "./files/sshkey.pub"
-      aws_key_pair_name = "ssh_key_worker2"
-      ebs_configs       = []
+      ami_owners               = []
+      ami_name_values          = []
+      instance_type            = "t3.micro"
+      instance_name            = "kubernetes_setup_worker2"
+      private_ip               = null
+      ssh_pubkey               = "./files/sshkey.pub"
+      aws_key_pair_name        = "ssh_key_worker2"
+      root_block_device_config = null
+      ebs_configs              = []
     }
   ]
 }

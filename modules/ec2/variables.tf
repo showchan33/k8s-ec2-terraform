@@ -52,6 +52,12 @@ variable "aws_key_pair_name" {
   default     = ""
 }
 
+variable "root_block_device_config" {
+  description = "Configuration for the root block device"
+  type        = map(any)
+  default     = null
+}
+
 # variable "use_additional_ebs" {
 #   description = "Set to true to add EBS"
 #   type        = bool

@@ -26,6 +26,11 @@ ec2_control_plane = {
   # Specify a public key file to SSH to the EC2 instance
   ssh_pubkey                 = "./files/sshkey.pub"
   aws_key_pair_name          = "ssh_key_control_plane"
+  root_block_device_config = null
+  # root_block_device_config = {
+  #   volume_size = 20
+  #   volume_type = "gp3"
+  # }
   ebs_configs                = []
   # ebs_configs              = [
   #   {
@@ -47,6 +52,11 @@ ec2_workers = [
     # Specify a public key file to SSH to the EC2 instance
     ssh_pubkey        = "./files/sshkey.pub"
     aws_key_pair_name = "ssh_key_worker1"
+    root_block_device_config = null
+    # root_block_device_config = {
+    #   volume_size = 20
+    #   volume_type = "gp3"
+    # }
     ebs_configs       = []
     # ebs_configs       = [
     #   {
