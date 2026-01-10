@@ -69,3 +69,15 @@ resource "aws_volume_attachment" "default" {
   volume_id   = each.value.id
   instance_id = aws_instance.default.id
 }
+
+resource "aws_eip" "default" {
+  count  = var.create_eip && (var.eip_allocation_id == null || var.eip_allocation_id == "") ? 1 : 0
+  domain = "vpc"
+  tags   = merge({ Name = "${var.instance_name}-eip" }, var.eip_tags)
+}
+
+resource "aws_eip_association" "default" {
+  count         = var.create_eip || (var.eip_allocation_id != null && var.eip_allocation_id != "") ? 1 : 0
+  instance_id   = aws_instance.default.id
+  allocation_id = coalesce(var.eip_allocation_id, try(aws_eip.default[0].id, null))
+}

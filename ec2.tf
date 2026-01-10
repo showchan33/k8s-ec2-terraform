@@ -11,6 +11,9 @@ module "ec2_control_plane" {
   aws_key_pair_name          = var.ec2_control_plane.aws_key_pair_name
   root_block_device_config   = var.ec2_control_plane.root_block_device_config
   ebs_configs                = var.ec2_control_plane.ebs_configs
+  create_eip                 = var.ec2_control_plane.create_eip
+  eip_allocation_id          = var.ec2_control_plane.eip_allocation_id
+  eip_tags                   = var.ec2_control_plane.eip_tags
 }
 
 module "ec2_worker" {
@@ -27,4 +30,7 @@ module "ec2_worker" {
   aws_key_pair_name          = each.value.aws_key_pair_name
   root_block_device_config   = each.value.root_block_device_config
   ebs_configs                = each.value.ebs_configs
+  create_eip                 = each.value.create_eip
+  eip_allocation_id          = each.value.eip_allocation_id
+  eip_tags                   = each.value.eip_tags
 }

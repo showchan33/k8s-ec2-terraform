@@ -33,6 +33,9 @@ variable "ec2_control_plane" {
     aws_key_pair_name          = "ssh_key_control_plane"
     root_block_device_config   = null
     ebs_configs                = []
+    create_eip                 = false
+    eip_allocation_id          = null
+    eip_tags                   = {}
     enable_access_to_apiserver = false
   }
 }
@@ -49,6 +52,9 @@ variable "ec2_workers" {
       aws_key_pair_name        = "ssh_key_worker1"
       root_block_device_config = null
       ebs_configs              = []
+      create_eip               = false
+      eip_allocation_id        = null
+      eip_tags                 = {}
     },
     {
       ami_owners               = []
@@ -60,6 +66,9 @@ variable "ec2_workers" {
       aws_key_pair_name        = "ssh_key_worker2"
       root_block_device_config = null
       ebs_configs              = []
+      create_eip               = false
+      eip_allocation_id        = null
+      eip_tags                 = {}
     }
   ]
 }

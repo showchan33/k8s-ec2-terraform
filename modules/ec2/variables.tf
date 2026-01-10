@@ -69,3 +69,26 @@ variable "ebs_configs" {
   type        = list(any)
   default     = []
 }
+
+variable "create_eip" {
+  description = "Set to true to create and associate a new Elastic IP"
+  type        = bool
+  default     = false
+}
+
+variable "eip_allocation_id" {
+  description = "Existing Elastic IP allocation ID to associate"
+  type        = string
+  default     = null
+
+  validation {
+    condition     = !(var.create_eip && var.eip_allocation_id != null && var.eip_allocation_id != "")
+    error_message = "Set either create_eip or eip_allocation_id, not both."
+  }
+}
+
+variable "eip_tags" {
+  description = "Additional tags for the Elastic IP (when created)"
+  type        = map(string)
+  default     = {}
+}
