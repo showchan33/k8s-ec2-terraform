@@ -1,8 +1,7 @@
 var_provider = {
   region = "ap-northeast-1"
-  # Enter each key for IAM user authentication
-  access_key = "AKxxxxx....."
-  secret_key = "yyyyyzzzzz....."
+  # access_key = "AKxxxxx....."
+  # secret_key = "yyyyyzzzzz....."
 }
 
 vpc = {

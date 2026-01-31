@@ -1,8 +1,11 @@
 variable "var_provider" {
+  type = object({
+    region     = string
+    access_key = optional(string)
+    secret_key = optional(string)
+  })
   default = {
     region     = "ap-northeast-1"
-    access_key = ""
-    secret_key = ""
   }
 }
 
