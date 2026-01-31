@@ -14,7 +14,7 @@ Kubernetesクラスターの構築を完成させるには、このツールでE
 
 * Terraformがインストールされていること
     * 動作確認バージョンはv1.8.4
-* AWSアカウントを持っており、各リソースを作成可能なIAMユーザ、およびIAMユーザのアクセスキーとシークレットキーが存在すること
+* AWSアカウントを持っており、各リソースを作成可能なIAMユーザが存在すること
 
 # 事前準備
 
@@ -22,19 +22,6 @@ Kubernetesクラスターの構築を完成させるには、このツールでE
 
 ``terraform.tfvars.sample``を参考に、``terraform.tfvars``を作成します。<br>
 以後、リソースの作成に必要な設定は全て``terraform.tfvars``で行います。
-
-## AWSのIAMユーザのアクセスキーとシークレットキーを入力
-
-AWSのリソースを作成するIAMユーザの認証情報を以下に入力します。
-
-```tfvars
-var_provider = {
-  region     = "ap-northeast-1"
-  # Enter each key for IAM user authentication
-  access_key = "AKxxxxx....."
-  secret_key = "yyyyyzzzzz....."
-}
-```
 
 ## SSH接続用の公開鍵と秘密鍵の準備
 

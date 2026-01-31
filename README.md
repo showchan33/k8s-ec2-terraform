@@ -14,7 +14,7 @@ To complete the creation of your Kubernetes cluster, please use [k8s-setup](http
 
 * Terraform must be installed.
     * Version confirmed to work is v1.8.4
-* Must have an AWS account, an IAM user who can create each resource, and an access key and secret key for the IAM user.
+* Must have an AWS account, an IAM user who can create each resource.
 
 # Preparation
 
@@ -22,19 +22,6 @@ To complete the creation of your Kubernetes cluster, please use [k8s-setup](http
 
 Create ``terraform.tfvars`` with reference to ``terraform.tfvars.sample``.<br>
 After this, all the configuration necessary to create the resource is done in ``terraform.tfvars``.
-
-## Enter the access key and secret key for the AWS IAM user
-
-Enter the credentials of the IAM user creating the AWS resource below.
-
-```tfvars
-var_provider = {
-  region     = "ap-northeast-1"
-  # Enter each key for IAM user authentication
-  access_key = "AKxxxxx....."
-  secret_key = "yyyyyzzzzz....."
-}
-```
 
 ## Prepare public and private keys for SSH connection
 
